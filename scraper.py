@@ -7,6 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import sched, time
 from datetime import datetime, timedelta
+import re
 
 
 def web_scraper(age=0,name='',email=''):
@@ -85,11 +86,31 @@ def send_mail(message,receiver_email):
             print(type(e),e)
             print('login failed')
 
-        
+
+def check_email(email):
+    regex = '\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b'
+    if(re.search(regex, email)):
+        return True
+    else:
+        return False
+
 def main():
-    age=25
-    name='Daire'
-    email='dairecan11@gmail.com'
+    name=input("Enter Name: ")
+
+    while True:
+        try:
+            age=int(input('Enter age:'))
+            break
+        except Exception as e:
+            print(type(e),e)
+            print('Type valid numerical age.')
+
+   # while True:
+    email=input('Enter Email: ')
+     #   if(check_email(email)):
+     #       break
+     #   else:
+       #     print(email+' is an invalid email address. Please Try Again.')
 
 
                 # Create the plain-text and HTML version of your message
